@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Faturamento Escritório Barreto - Mockup</title>
+    <title>Escritório Barreto - Mockup</title>
     <!-- Carrega Tailwind CSS para estilização rápida e responsiva -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -31,64 +31,70 @@
 
     <!-- Card Principal do Aplicativo -->
     <div class="w-full max-w_lg bg-white shadow-2xl rounded-xl p-6 md:p-8 transform transition-all duration-300">
-        <header class="text-center mb-6">
-            <h1 class="text-3xl font-extrabold text-blue-700">
-                Registro de Faturamento Escritório Barreto
-            </h1>
-            <p class="text-gray-500 mt-1">
-                Insira o valor total do faturamento diário.
-            </p>
+        
+        <!-- HEADER e DATA -->
+        <header class="mb-8">
+            <div class="flex justify-between items-start mb-2">
+                <!-- AUMENTADO: text-4xl -->
+                <h1 class="text-4xl font-extrabold text-blue-700 leading-tight">
+                    Escritório Barreto
+                </h1>
+                
+                <!-- Campo de Data -->
+                <div class="flex flex-col items-end">
+                    <label for="currentDate" class="text-xs font-medium text-gray-500">Data</label>
+                    <input type="date" id="currentDate" 
+                           class="w-32 text-sm text-right px-2 py-1 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out bg-gray-50"
+                           value=""> 
+                </div>
+            </div>
         </header>
 
         <div id="appContainer">
             
-            <!-- SEÇÃO DE INPUTS (Sem Form/Botão) -->
-            <div id="inputSection" class="space-y-4 mb-8">
-                <div>
-                    <!-- Campo de Data (Revertido para Input Editável) -->
-                    <label for="currentDate" class="block text-sm font-medium text-gray-700 mb-1">Data Atual</label>
-                    <input type="date" id="currentDate" 
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out bg-gray-50"
-                           value=""> <!-- O valor inicial será definido no JS -->
+            <!-- CAMPO ÚNICO DE FATURAMENTO - GRANDE DESTAQUE -->
+            <div class="bg-blue-50 p-6 rounded-xl shadow-inner mb-8">
+                <label for="revenueTotal" class="block text-sm font-medium text-blue-700 mb-2">
+                    Faturamento Total do Dia
+                </label>
+                <!-- Contêiner que simula o input, com R$ estático -->
+                <div class="flex items-center">
+                    
+                    <!-- Prefixo estático R$ AUMENTADO: text-7xl -->
+                    <span class="text-7xl font-extrabold text-blue-700 select-none pr-2">R$</span>
+                    
+                    <!-- VALOR AUMENTADO PARA text-7xl -->
+                    <input type="tel" id="revenueTotal" required 
+                           class="w-full bg-transparent border-none outline-none 
+                                  text-7xl font-extrabold text-blue-700 placeholder-gray-400 text-right"
+                           placeholder="0,00" value="0,00">
                 </div>
-
-                <!-- CAMPO ÚNICO DE FATURAMENTO -->
-                <div class="mt-4">
-                    <label for="revenueTotal" class="block text-sm font-medium text-gray-700 mb-1">
-                        Faturamento Total do Dia
-                    </label>
-                    <!-- Contêiner que simula o input, com R$ estático -->
-                    <div class="flex border-2 border-gray-300 rounded-xl focus-within:ring-blue-500 focus-within:border-blue-500 transition duration-150 ease-in-out items-center bg-white shadow-sm">
-                        
-                        <!-- Prefixo estático R$ para clareza -->
-                        <span class="pl-4 py-4 text-2xl font-extrabold text-gray-500 select-none">R$</span>
-                        
-                        <!-- Ao digitar neste campo, a meta será atualizada em tempo real -->
-                        <input type="tel" id="revenueTotal" required 
-                               class="w-full py-4 pr-4 bg-transparent border-none outline-none 
-                                      text-2xl font-extrabold text-blue-700 placeholder-gray-400 text-right"
-                               placeholder="0,00" value="0,00">
-                    </div>
-                </div>
-                <!-- FIM DO CAMPO ÚNICO -->
             </div>
 
-            <!-- Indicador de Meta Diária -->
-            <div class="bg-blue-50 p-4 rounded-lg shadow-inner">
-                <h2 class="text-md font-bold text-blue-700 mb-1">Meta Diária (R$ 6.000,00)</h2>
+            <!-- Indicador de Meta Diária - ALTO CONTRASTE -->
+            <div class="bg-blue-700 p-4 rounded-lg shadow-lg text-white">
                 
-                <!-- INFORMATIVO DA META -->
-                <p class="text-xs text-gray-500 mb-3 font-semibold">
+                <h2 class="text-xl font-extrabold mb-1">Meta Diária (R$ 6.000,00)</h2>
+                
+                <!-- INFORMATIVO DA META - MOVIMENTADO E COM FONTE MAIOR -->
+                <p class="text-sm mb-4 font-semibold text-blue-200">
                     Lembrete: O ideal é tentar bater no mínimo R$ 2.000,00 em cada planilha de faturamento.
                 </p>
-                <!-- FIM DO INFORMATIVO -->
-                
-                <div class="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
-                    <div id="metaProgressBar" class="bg-red-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+
+                <!-- BARRA DE PROGRESSO ISOLADA -->
+                <div class="w-full bg-blue-500 rounded-full h-3 mb-4 overflow-hidden">
+                    <div id="metaProgressBar" class="h-3 rounded-full transition-all duration-500" style="width: 0%; background-color: #ef4444;"></div>
                 </div>
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-600 font-medium">Total do Dia: <span id="dailyTotal">R$ 0,00</span></span>
-                    <span id="metaStatus" class="font-bold text-red-500">Atingir meta!</span>
+                
+                <!-- TOTAL DO DIA E STATUS EM DESTAQUE -->
+                <div class="flex justify-between items-baseline">
+                    <span class="font-medium text-base">
+                        Total do Dia: 
+                        <!-- Total do Dia Grande e Branco AUMENTADO: text-4xl -->
+                        <span id="dailyTotal" class="text-4xl font-extrabold text-white">0,00</span>
+                    </span>
+                    <!-- Status Grande AUMENTADO: text-2xl -->
+                    <span id="metaStatus" class="font-extrabold text-red-300 text-2xl">Atingir meta!</span>
                 </div>
             </div>
             
@@ -105,7 +111,7 @@
         const dailyTotalSpan = document.getElementById('dailyTotal');
         const metaProgressBar = document.getElementById('metaProgressBar');
         const metaStatusSpan = document.getElementById('metaStatus');
-        const currentDateInput = document.getElementById('currentDate'); // Novo/Revertido
+        const currentDateInput = document.getElementById('currentDate'); 
 
         // Define a data atual como padrão no campo de input
         currentDateInput.value = new Date().toISOString().substring(0, 10);
@@ -124,13 +130,14 @@
         }
 
         /**
-         * Formata um número para o formato de moeda brasileira (Ex: 3000.50 -> R$ 3.000,50).
+         * Formata um número para o formato de moeda brasileira (Ex: 3000.50 -> 3.000,50).
          * @param {number} value - O valor numérico.
-         * @returns {string} O valor formatado em string R$.
+         * @returns {string} O valor formatado em string (sem R$).
          */
         function formatCurrency(value) {
-            // Garante que o número é tratado como moeda
-            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            // Garante que o número é tratado como moeda e remove o símbolo R$ e espaço
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                       .replace('R$', '').trim();
         }
 
         /**
@@ -183,28 +190,27 @@
         function updateGoalIndicator(total) {
             const percentage = Math.min(100, (total / TARGET_GOAL) * 100);
             
+            // Atualiza o valor do total do dia (formatado sem R$)
             dailyTotalSpan.textContent = formatCurrency(total);
+            
             metaProgressBar.style.width = `${percentage}%`;
 
+            // Cores da Barra de Progresso e do Status (Ajustadas para o fundo azul escuro)
             if (total >= TARGET_GOAL) {
-                metaProgressBar.classList.remove('bg-yellow-500', 'bg-red-500');
-                metaProgressBar.classList.add('bg-green-500');
+                metaProgressBar.style.backgroundColor = '#10B981'; // green-500
                 metaStatusSpan.textContent = 'Meta Atingida!';
-                metaStatusSpan.classList.remove('text-red-500', 'text-yellow-500');
-                metaStatusSpan.classList.add('text-green-600');
+                metaStatusSpan.classList.remove('text-yellow-300', 'text-red-300');
+                metaStatusSpan.classList.add('text-green-300');
             } else if (total > (TARGET_GOAL * 0.5)) {
-                metaProgressBar.classList.remove('bg-red-500', 'bg-green-500');
-                metaProgressBar.classList.add('bg-yellow-500');
+                metaProgressBar.style.backgroundColor = '#F59E0B'; // yellow-500
                 metaStatusSpan.textContent = 'Quase lá!';
-                metaStatusSpan.classList.remove('text-red-500', 'text-green-600');
-                metaStatusSpan.classList.add('text-yellow-600');
+                metaStatusSpan.classList.remove('text-red-300', 'text-green-300');
+                metaStatusSpan.classList.add('text-yellow-300');
             } else {
-                // A barra começa vermelha (padrão)
-                metaProgressBar.classList.remove('bg-yellow-500', 'bg-green-500');
-                metaProgressBar.classList.add('bg-red-500');
+                metaProgressBar.style.backgroundColor = '#EF4444'; // red-500
                 metaStatusSpan.textContent = 'Atingir meta!';
-                metaStatusSpan.classList.remove('text-yellow-600', 'text-green-600');
-                metaStatusSpan.classList.add('text-red-500');
+                metaStatusSpan.classList.remove('text-yellow-300', 'text-green-300');
+                metaStatusSpan.classList.add('text-red-300');
             }
         }
 
